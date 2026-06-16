@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RedNeT • Kızıl Ağ</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;600&display=swap');
 
         :root {
             --red: #CC0000;
@@ -36,6 +36,8 @@
             text-align: center;
             padding: 60px 20px 40px;
             border-bottom: 3px solid #CC0000;
+            position: relative;
+            z-index: 1;
         }
 
         .logo {
@@ -65,6 +67,8 @@
 
         section {
             padding: 80px 0;
+            position: relative;
+            z-index: 1;
         }
 
         h2 {
@@ -123,11 +127,31 @@
             border-top: 1px solid #222;
             color: #888;
             font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .red-accent {
+        /* KAYAN KIZIL YILDIZLARIN STİLİ */
+        .star {
+            position: fixed;
             color: #CC0000;
-            font-weight: 600;
+            font-size: 14px;
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
+            animation: fall linear forwards;
+            filter: drop-shadow(0 0 6px #CC0000);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-20px) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) translateX(-80px) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -171,9 +195,44 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <div class="footer">
         <p>© RedNeT • Kızıl Ağ • 2026</p>
     </div>
+
+    <!-- JAVASCRIPT: METEOR GİBİ KAYAN KIZIL YILDIZ MOTORU -->
+    <script>
+        function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.innerHTML = '★';
+            
+            // Ekran genişliğinde rastgele X koordinatı
+            star.style.left = Math.random() * window.innerWidth + 'px';
+            star.style.top = '-20px';
+            
+            // Oynaklık için rastgele boyut (10px ile 22px arası)
+            const size = Math.random() * 12 + 10;
+            star.style.fontSize = size + 'px';
+            
+            // Rastgele hız: Düşüş süresi (3.5 ila 6.5 saniye arası)
+            const duration = Math.random() * 3 + 3.5;
+            star.style.animationDuration = duration + 's';
+            
+            // Rastgele parlaklık yoğunluğu
+            star.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            document.body.appendChild(star);
+            
+            // Ekrandan çıkınca temizleme (Hafıza dostu)
+            setTimeout(() => {
+                star.remove();
+            }, duration * 1000);
+        }
+
+        // Her 350 milisaniyede bir yeni bir kızıl yıldız fırlatır
+        setInterval(createStar, 350);
+    </script>
 
 </body>
 </html>
