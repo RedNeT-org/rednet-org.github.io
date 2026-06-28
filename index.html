@@ -29,13 +29,23 @@
             min-height: 100vh;
         }
 
+        /* Siber Seçim Efekti */
+        ::selection {
+            background-color: var(--red);
+            color: #ffffff;
+        }
+        ::-moz-selection {
+            background-color: var(--red);
+            color: #ffffff;
+        }
+
         .container {
             max-width: 850px;
             margin: 0 auto;
             padding: 0 25px;
         }
 
-        /* HEADER GELİŞTİRMELERİ */
+        /* HEADER GELİŞTİRİLMELERİ */
         header {
             text-align: center;
             padding: 80px 20px 50px;
@@ -204,7 +214,6 @@
             <img src="logo1.jpg" alt="RedNeT Logo" class="logo">
             <h1>RedNeT</h1>
             <p class="tagline">Kızıl Ağ • Dijital Kolektif</p>
-        }
         </div>
     </header>
 
